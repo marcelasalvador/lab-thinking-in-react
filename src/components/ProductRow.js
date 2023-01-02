@@ -4,7 +4,7 @@ import jsonData from '../data.json';
 
 
 
-function ProductRow(props) {
+function ProductRow() {
     
     const [products] = useState(jsonData);
         return (

@@ -1,6 +1,6 @@
 import './App.css';
 import ProductsPage from './components/ProductsPage';
-import SearchBar from './components/SearchBar';
+
 
 function App() {
   return (

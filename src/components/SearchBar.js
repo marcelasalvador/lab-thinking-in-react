@@ -2,22 +2,23 @@ import { useState} from 'react';
 import jsonData from '../data.json';
 
 function SearchBar() {
-    const [searchInput, setSearchInput] = useState(jsonData);
+    const [searchInput, setSearchInput] = useState("");
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        setSearchInput(e.target.value);
-      };
+    // const handleChange = (e) => {
+    //     e.preventDefault();
+    //     setSearchInput(e.target.value);
+    //   };
       
-      if (searchInput.length > 0) {
-          jsonData.filter((product) => {
-          return product.name.match(searchInput);
-      });
-      }
+    //   if (searchInput.length > 0) {
+    //       jsonData.filter((product) => {
+    //       return product.name.match(searchInput);
+    //   });
+    //   }
 
 
 
 return (
+
   <div>
     <h3>
       <span>Search Bar:</span>
@@ -25,12 +26,31 @@ return (
     <input
    type="text"
    placeholder="Search here"
-   onChange={handleChange}
-   value={searchInput} />
+   onChange={(event) => {
+        setSearchInput(event.target.value)
+      }}
+    />
+    {jsonData.filter((val) => {
+            if(searchInput === "") {
+                return val
+            } else if (val.name.toLowerCase().includes(searchInput.toLowerCase())){
+                return val
+            }
+    
+    }).map((val, key) => {
+        return(
+            <div key={key}>
+            <p>{val.name}</p>
+            </div>
+        )
+    })}
+
    <label>
         <input
           type="checkbox"
-          
+          onChange={(event) => {
+        setSearchInput(event.target.value)
+      }}
         />
         Only show products in stock
       </label>
